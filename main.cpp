@@ -21,6 +21,10 @@ int main(){
     cout<<endl;
     p.pathHighPrice("A","D");
     cout<<endl;
+    p.pathLowtime("A","D");
+    cout<<endl;
+    p.pathHightime("A","D");
+    cout<<endl;
     
 
     return 0;

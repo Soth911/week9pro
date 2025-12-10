@@ -113,7 +113,7 @@ class graph{
             path.push_back(start);
     
             lowPrice(start, end, visited, path, 0, minPrice, bestPath);
-            cout << "Lowest price: " << minPrice << endl;
+            cout << "Lowest price: "<<"$" << minPrice << endl;
             cout << "Path: ";
             for (auto &p : bestPath) cout << p << " -> ";
             cout << end << endl;
@@ -140,46 +140,123 @@ class graph{
                     visited.erase(p.des);
                     }
                 }
-            }
-            
-            void pathHighPrice(string start,string end){
-                unordered_set<string> visited;
-                vector<string> path;
-                vector<string> bestPath;
-                int maxPrice=INT_MIN;
-    
-                visited.insert(start);
-                path.push_back(start);
+        }
         
-                highPrice(start, end, visited, path, 0, maxPrice, bestPath);
-                cout << "Highest price: " << maxPrice << endl;
-                cout << "Path: ";
-                for (auto &p : bestPath) cout << p << " -> ";
-                cout << end << endl;
+        void pathHighPrice(string start,string end){
+            unordered_set<string> visited;
+            vector<string> path;
+            vector<string> bestPath;
+            int maxPrice=INT_MIN;
+    
+            visited.insert(start);
+            path.push_back(start);
+    
+            highPrice(start, end, visited, path, 0, maxPrice, bestPath);
+            cout << "Highest price: " <<"$"<< maxPrice << endl;
+            cout << "Path: ";
+            for (auto &p : bestPath) cout << p << " -> ";
+            cout << end << endl;
+        }
+    
+        void highPrice(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathprice, int &maxPrice, vector<string> &bestPath){
+            if (cur == last){
+                if (curPathprice > maxPrice){
+                    maxPrice = curPathprice;
+                    bestPath = path;
+                }
+                return;
+            }
+        
+            for (auto &p : graph[cur]){
+    
+                if (!visited.count(p.des)){
+                    visited.insert(p.des);
+                    path.push_back(p.des);
+        
+                    highPrice(p.des, last, visited, path, curPathprice + p.price, maxPrice, bestPath);
+        
+                    path.pop_back();
+                    visited.erase(p.des);
+                    }
+                }
+        }
+        
+            
+        void pathLowtime(string start,string end){
+            unordered_set<string> visited;
+            vector<string> path;
+            vector<string> bestPath;
+            int minTime;
+    
+            visited.insert(start);
+            path.push_back(start);
+    
+            lowTime(start, end, visited, path, 0, minTime, bestPath);
+            cout << "Lowest time : " << minTime <<"h"<< endl;
+            cout << "Path: ";
+            for (auto &p : bestPath) cout << p << " -> ";
+            cout << end << endl;
+        }
+    
+        void lowTime(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathTime, int &mintime, vector<string> &bestPath){
+            if (cur == last){
+                if (curPathTime < mintime){
+                    mintime = curPathTime;
+                    bestPath = path;
+                }
+                return;
+            }
+        
+            for (auto &p : graph[cur]){
+                if (!visited.count(p.des)){
+                    visited.insert(p.des);
+                    path.push_back(p.des);
+        
+                    lowTime(p.des, last, visited, path, curPathTime + p.time, mintime, bestPath);
+        
+                    path.pop_back();
+                    visited.erase(p.des);
+                }
             }
     
-            void highPrice(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathprice, int &maxPrice, vector<string> &bestPath){
-                if (cur == last){
-                    if (curPathprice > maxPrice){
-                        maxPrice = curPathprice;
-                        bestPath = path;
-                    }
-                    return;
-                }
-            
-                for (auto &p : graph[cur]){
+        }
         
-                    if (!visited.count(p.des)){
-                        visited.insert(p.des);
-                        path.push_back(p.des);
-            
-                        highPrice(p.des, last, visited, path, curPathprice + p.price, maxPrice, bestPath);
-            
-                        path.pop_back();
-                        visited.erase(p.des);
-                        }
-                    }
+        void pathHightime(string start,string end){
+            unordered_set<string> visited;
+            vector<string> path;
+            vector<string> bestPath;
+            int maxTime=0;
+    
+            visited.insert(start);
+            path.push_back(start);
+    
+            highTime(start, end, visited, path, 0, maxTime, bestPath);
+            cout << "Longest time : " << maxTime<<"h" << endl;
+            cout << "Path: ";
+            for (auto &p : bestPath) cout << p << " -> ";
+            cout << end << endl;
+        }
+    
+        void highTime(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathTime, int &maxtime, vector<string> &bestPath){
+            if (cur == last){
+                if (curPathTime > maxtime){
+                    maxtime = curPathTime;
+                    bestPath = path;
                 }
-
-
+                return;
+            }
+        
+            for (auto &p : graph[cur]){
+                if (!visited.count(p.des)){
+                    visited.insert(p.des);
+                    path.push_back(p.des);
+        
+                    highTime(p.des, last, visited, path, curPathTime + p.time, maxtime, bestPath);
+        
+                    path.pop_back();
+                    visited.erase(p.des);
+                }
+            }
+    
+        }
 };
