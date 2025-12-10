@@ -19,11 +19,9 @@ class graph{
     public :
 
         void addRoute(string from,string to,int time,int price){
-            bool exist = false;
             for(auto &a:graph[from]){
                 if(a.des==to){
                     cout<<"Already exist"<<endl;
-                    exist=true;
                     return;
                 }
             }
@@ -103,7 +101,85 @@ class graph{
                 }
             }
         }
-
         
+        
+        void pathLowPrice(string start,string end){
+            unordered_set<string> visited;
+            vector<string> path;
+            vector<string> bestPath;
+            int minPrice ;
+
+            visited.insert(start);
+            path.push_back(start);
+    
+            lowPrice(start, end, visited, path, 0, minPrice, bestPath);
+            cout << "Lowest price: " << minPrice << endl;
+            cout << "Path: ";
+            for (auto &p : bestPath) cout << p << " -> ";
+            cout << end << endl;
+        }
+
+        void lowPrice(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathprice, int &minPrice, vector<string> &bestPath){
+            if (cur == last){
+                if (curPathprice < minPrice){
+                    minPrice = curPathprice;
+                    bestPath = path;
+                }
+                return;
+            }
+        
+            for (auto &p : graph[cur]){
+    
+                if (!visited.count(p.des)){
+                    visited.insert(p.des);
+                    path.push_back(p.des);
+        
+                    lowPrice(p.des, last, visited, path, curPathprice + p.price, minPrice, bestPath);
+        
+                    path.pop_back();
+                    visited.erase(p.des);
+                    }
+                }
+            }
+            
+            void pathHighPrice(string start,string end){
+                unordered_set<string> visited;
+                vector<string> path;
+                vector<string> bestPath;
+                int maxPrice=INT_MIN;
+    
+                visited.insert(start);
+                path.push_back(start);
+        
+                highPrice(start, end, visited, path, 0, maxPrice, bestPath);
+                cout << "Highest price: " << maxPrice << endl;
+                cout << "Path: ";
+                for (auto &p : bestPath) cout << p << " -> ";
+                cout << end << endl;
+            }
+    
+            void highPrice(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathprice, int &maxPrice, vector<string> &bestPath){
+                if (cur == last){
+                    if (curPathprice > maxPrice){
+                        maxPrice = curPathprice;
+                        bestPath = path;
+                    }
+                    return;
+                }
+            
+                for (auto &p : graph[cur]){
+        
+                    if (!visited.count(p.des)){
+                        visited.insert(p.des);
+                        path.push_back(p.des);
+            
+                        highPrice(p.des, last, visited, path, curPathprice + p.price, maxPrice, bestPath);
+            
+                        path.pop_back();
+                        visited.erase(p.des);
+                        }
+                    }
+                }
+
 
 };
