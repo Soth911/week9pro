@@ -17,13 +17,18 @@ int main(){
     cout<<endl;
     p.pathPrint("A","D");
     cout<<endl;
+    cout<<endl;
     p.pathLowPrice("A","D");
+    cout<<endl;
     cout<<endl;
     p.pathHighPrice("A","D");
     cout<<endl;
+    cout<<endl;
     p.pathLowtime("A","D");
     cout<<endl;
+    cout<<endl;
     p.pathHightime("A","D");
+    cout<<endl;
     cout<<endl;
     
 

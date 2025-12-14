@@ -115,8 +115,8 @@ class graph{
             lowPrice(start, end, visited, path, 0, minPrice, bestPath);
             cout << "Lowest price: "<<"$" << minPrice << endl;
             cout << "Path: ";
-            for (auto &p : bestPath) cout << p << " -> ";
-            cout << end << endl;
+            for (auto &p : bestPath) cout  << " -> "<< p;
+            
         }
 
         void lowPrice(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathprice, int &minPrice, vector<string> &bestPath){
@@ -154,8 +154,8 @@ class graph{
             highPrice(start, end, visited, path, 0, maxPrice, bestPath);
             cout << "Highest price: " <<"$"<< maxPrice << endl;
             cout << "Path: ";
-            for (auto &p : bestPath) cout << p << " -> ";
-            cout << end << endl;
+            for (auto &p : bestPath) cout  << " -> "<< p;
+            
         }
     
         void highPrice(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathprice, int &maxPrice, vector<string> &bestPath){
@@ -194,8 +194,8 @@ class graph{
             lowTime(start, end, visited, path, 0, minTime, bestPath);
             cout << "Lowest time : " << minTime <<"h"<< endl;
             cout << "Path: ";
-            for (auto &p : bestPath) cout << p << " -> ";
-            cout << end << endl;
+            for (auto &p : bestPath) cout  << " -> "<< p;
+            
         }
     
         void lowTime(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathTime, int &mintime, vector<string> &bestPath){
@@ -233,8 +233,8 @@ class graph{
             highTime(start, end, visited, path, 0, maxTime, bestPath);
             cout << "Longest time : " << maxTime<<"h" << endl;
             cout << "Path: ";
-            for (auto &p : bestPath) cout << p << " -> ";
-            cout << end << endl;
+            for (auto &p : bestPath) cout  << " -> "<< p;
+            
         }
     
         void highTime(string cur, string last, unordered_set<string>& visited, vector<string>& path, int curPathTime, int &maxtime, vector<string> &bestPath){
