@@ -2,32 +2,32 @@
 
 int main(){
     graph p;
-    p.addRoute("PHN","SIN",2,100);
-    p.addRoute("PHN","SIN",2,100);
-    p.addRoute("PHN","ICN",3,150);
-    p.addRoute("PHN","TPE",3,150);
-    p.addRoute("TPE","USA",4,200);
-    p.addRoute("ICN","USA",1,120);
+    p.addRoute("CAM","SIN",2,100);
+    p.addRoute("CAM","SIN",2,100);
+    p.addRoute("CAM","KOR",3,150);
+    p.addRoute("CAM","TAI",3,150);
+    p.addRoute("TAI","USA",4,200);
+    p.addRoute("KOR","USA",1,120);
     p.addRoute("SIN","USA",1,120);
     p.printRoute();
     cout<<endl;
-    p.reachability("PHN");
+    p.reachability("CAM");
     cout<<endl;
     p.reachability("SIN");
     cout<<endl;
-    p.pathPrint("PHN","USA");
+    p.pathPrint("CAM","USA");
     cout<<endl;
     cout<<endl;
-    p.pathLowPrice("PHN","USA");
+    p.pathLowPrice("CAM","USA");
     cout<<endl;
     cout<<endl;
-    p.pathHighPrice("PHN","USA");
+    p.pathHighPrice("CAM","USA");
     cout<<endl;
     cout<<endl;
-    p.pathLowtime("PHN","USA");
+    p.pathLowtime("CAM","USA");
     cout<<endl;
     cout<<endl;
-    p.pathHightime("PHN","USA");
+    p.pathHightime("CAM","USA");
     cout<<endl;
     cout<<endl;
     
